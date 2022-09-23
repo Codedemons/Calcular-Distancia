@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Distancia Js</title>
+    <link rel="stylesheet" href="Style/Style.css">
+    <!-- GOOGLE FONTs -->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <!-- ANIMATE CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraph.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraphcore.js" type="text/javascript" charset="UTF-8"></script>
+    <!-- The next line is optional: MathJax -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script" async></script>
+</head>
+<body>
+    
+    <div class="content">
+
+        <h1 class="logo">Calcular Distancia de <span>Dos Puntos</span></h1>
+
+        <div class="contact-wrapper animated bounceInUp">
+            <div class="contact-form">
+                <h3>Distancia de Dos puntos grafica</h3>
+                <form action="">
+                    
+                    <div id="jxgbox" class="jxgbox" style="width:700px; height:300px;"></div>
+
+                    <script>
+                    alert("Distancia entre dos numeros, ingresa los datos");
+                    var X1 = prompt("Punto A X1");
+                    var X2 = prompt("Punto A X2");
+                    var Y1 = prompt("Punto B Y1");
+                    var Y2 = prompt("Punto B Y2");
+                    
+                    var board = JXG.JSXGraph.initBoard('jxgbox', {boundingbox: [-5, 10, 7, -6], axis: true});
+                    var p = [];
+                    p[0] = board.create('point', [X1,X2], {size:4});
+                    p[1] = board.create('point', [Y1,Y2], {size:4});
+                    var f = JXG.Math.Numerics.lagrangePolynomial(p);
+                    var graph = board.create('functiongraph', [f,-10, 10], {strokeWidth:3});
+                    var d1 = board.create('functiongraph', [JXG.Math.Numerics.D(f), -10, 10], {dash:1});
+                    var d2 = board.create('functiongraph', [JXG.Math.Numerics.D(JXG.Math.Numerics.D(f)), -10, 10], {dash:2});
+                  
+                    </script>
+                  
+                </form>
+            </div>
+            <div class="contact-info">
+                
+                <h4>Distancia de Dos Puntos</h4>                
+                <script>
+                    document.write("El resuldato de la distancia de los puntos A("+ X1 + " , "+ X2 + ") <br> B("+ Y1 + " , " + Y2 +") <br>");
+                    var resul  = Math.sqrt((Math.pow(Y1-X1, 2))+(Math.pow(Y2-X2, 2)));
+                    document.write("El Resultado es: " +  resul);
+                    
+                </script>                
+                
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
